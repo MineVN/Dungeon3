@@ -1,0 +1,16 @@
+name: Dungeon3
+author: MankaiStep
+version: 1.0
+api-version: 1.12
+load: POSTWORLD
+main: mk.plugin.dungeon3.main.MainDungeon3
+depend: [MythicMobs, EssentialsSpawn]
+softdepend: [Shops, Vault]
+commands:
+    dungeon3:
+        description: Plugin's commands
+        aliases: [dadmin, d3, sd]
+        permission: dungeon.command
+    dungeon:
+        description: Plugin's commands
+        aliases: [d, phoban]

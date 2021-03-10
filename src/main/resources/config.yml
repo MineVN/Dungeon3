@@ -1,0 +1,141 @@
+# Commands
+# {5} >> Delay 5 ticks
+# [playercmd] <cmd>
+# [opplayercmd] <cmd>
+# [consolecmd] <cmd>
+# [tele] <location>
+# [mess] <message>
+# [broadcast] <message>
+# [title] <title;subtitle>
+# [kill] <mob;mob2(*=all)(slave=slave)>
+# [sound] <sound>;f1;f2
+# [showrank]
+# Rank: S, A, B, C, D, F
+ticket:
+  item:
+    name: '&6&lVé phó bản &e&l%dungeon_name%'
+    type: CARPET
+    data: 13
+    lore:
+    - '&7&oDùng để vào hàng chờ phó bản'
+    enchant: []
+    flag: []
+
+buff:
+  drop: 1.5
+
+rank:
+  S:
+    kill: 90
+    save: 90
+    time: 20
+    dead: 0
+  A:
+    kill: 75
+    save: 75
+    time: 30
+    dead: 0
+  B:
+    kill: 60
+    save: 60
+    time: 40
+    dead: 50
+  C:
+    kill: 40
+    save: 40
+    time: 50
+    dead: 50
+  D:
+    kill: 20
+    save: 20
+    time: 60
+    dead: 100
+  F:
+    kill: 10
+    save: 10
+    time: 70
+    dead: 100
+
+# Professions:
+# 1: Default + tạp đề
+# 2: Default
+# 3: White
+# 4: Purple
+# 5: Default + black shirt
+# 6: 1
+# 7: Green
+# 8: 1
+slave:
+  slv1:
+    name: '&6&lSteve'
+    color: 2
+  slv2:
+    name: '&f&lJohn'
+    color: 3
+
+dungeon:
+  d1:
+    info:
+      name: Đảo xanh
+      desc: Dungeon cơ bản dành cho người mới bắt đầu
+      worlds:
+      - world_dungeon_1
+      - world_dungeon_1_1
+    option:
+      max-time: 3600
+      player: '1:5'
+      level: '5:10'
+      gui-slot: 0
+      mob-glow: true
+    rule:
+      respawn: 3 # Only for falling to lava and water if allowed
+      lava-dead: true
+      water-dead: true
+      pvp: true
+    location:
+      l1: 2;world;-374.46584650766835;132.0;215.41184693620855;0.1;0.1
+      l2: 2;world;-374.46584650766835;132.0;215.41184693620855;0.1;0.1
+    block:
+      b1: WOOL;1;world;10;12;13
+    money-drop:
+    - mob1;100;10
+    drop:
+    - mob1;item1;1;80 #80% drop item x1 when mob1 dead
+    reward-req:
+      mob-kill: mob1;mob2
+      slave-save: 1
+      kill-count: 10
+      max-dead: 4
+    rewards: []
+    check-points:
+    - l1
+    - l3
+    turn:
+      t1:
+        win-req:
+          slave-save: 5
+          kill: mob1;mob2 #*
+          kill-all: true
+        commands:
+          on-start:
+          - '{5} [title] &c&lĐảo xanh;&7Coi chừng nha'
+          - '{10} [mess] &aLuật: 123abc 123abc'
+          - '{10} [mess] &aLuật: xyz xyz xyz'
+          on-lose: []
+          on-win:
+          - '[kill] *'
+        spawn:
+          delay: 100
+          block-break: b1;b2;b3;b4;b5
+          slave:
+          - slv1;l1
+          mob:
+          - mob1;2;l1
+          - mob2;2;l1
+          - mob2;1;l2
+        chest:
+          l1:
+            chance: 90
+            commands:
+            - 'bc %player% la thang ngu'
+    
